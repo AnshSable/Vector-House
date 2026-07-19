@@ -1,0 +1,139 @@
+/* ─── Google Fonts ──────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap");
+
+@import "tailwindcss";
+
+/* ─── Enable class-based dark mode (Tailwind v4) ────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+@theme {
+  /* Backgrounds */
+  --color-ivory:      #F8F6F2;
+  --color-cream:      #F2EDE6;
+  --color-beige:      #DDD2C3;
+  --color-sand:       #CDBCA9;
+
+  /* Neutrals */
+  --color-taupe:      #A78F7A;
+  --color-mocha:      #7A6556;
+  --color-chocolate:  #4B3A32;
+
+  /* Dark */
+  --color-charcoal:   #2B2B2B;
+  --color-softblack:  #1B1B1B;
+
+  /* Accent palette */
+  --color-sage:       #8A9A7E;
+  --color-olive:      #9C9770;
+  --color-terracotta: #C1704D;
+  --color-gold:       #C9A45C;
+  --color-rust:       #A85C3C;
+
+  /* Functional */
+  --color-success:    #7A8F6E;
+  --color-error:      #B25B45;
+
+  /* Typography */
+  --font-serif:  "Fraunces", Georgia, serif;
+  --font-sans:   "Inter", system-ui, sans-serif;
+
+  /* Extended spacing */
+  --spacing-section: 7rem;
+  --spacing-section-sm: 4rem;
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-chocolate);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark mode body */
+.dark body {
+  background-color: var(--color-softblack);
+  color: var(--color-cream);
+}
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-terracotta);
+  color: var(--color-ivory);
+}
+
+/* ─── Scrollbar (Webkit) ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-sand); border-radius: 3px; }
+.dark ::-webkit-scrollbar-track { background: var(--color-charcoal); }
+.dark ::-webkit-scrollbar-thumb { background: var(--color-mocha); }
+
+/* ─── Typography helpers ─────────────────────────────────── */
+.font-serif   { font-family: var(--font-serif); }
+.font-sans    { font-family: var(--font-sans); }
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;       /* 11px */
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+}
+
+/* ─── Utility ────────────────────────────────────────────── */
+.container-site {
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-site {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Section vertical rhythm */
+.section-py {
+  padding-top: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+}
+
+@media (max-width: 767px) {
+  .section-py {
+    padding-top: var(--spacing-section-sm);
+    padding-bottom: var(--spacing-section-sm);
+  }
+}
+
+/* Thin divider */
+.divider {
+  border-top: 1px solid var(--color-beige);
+}
+
+.dark .divider {
+  border-top-color: var(--color-charcoal);
+}
+
+/* ─── Framer Motion helpers ──────────────────────────────── */
+.will-animate {
+  will-change: transform, opacity;
+}
