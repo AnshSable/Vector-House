@@ -32,14 +32,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Brand col */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               <Image 
                 src="/images/logo.png" 
                 alt="Vector House Logo" 
-                width={140} 
-                height={40} 
-                className="h-8 w-auto object-contain"
+                width={32} 
+                height={32} 
+                className="w-8 h-8 object-cover rounded-md"
               />
+              <span className="font-serif text-lg font-medium text-[#4B3A32] dark:text-[#F2EDE6]">
+                Vector House
+              </span>
             </div>
             <p className="text-sm text-[#7A6556] dark:text-[#A78F7A] leading-relaxed max-w-xs">
               A digital studio crafting web products, AI systems, and design that means something.

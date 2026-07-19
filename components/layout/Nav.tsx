@@ -59,14 +59,17 @@ export default function Nav() {
       >
         <div className="container-site flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center group" aria-label="Vector House Home">
+          <Link href="/" className="flex items-center gap-2 group" aria-label="Vector House Home">
             <Image 
               src="/images/logo.png" 
               alt="Vector House Logo" 
-              width={140} 
-              height={40} 
-              className="h-8 w-auto object-contain"
+              width={32} 
+              height={32} 
+              className="w-8 h-8 object-cover rounded-md"
             />
+            <span className="font-serif text-lg font-medium text-[#4B3A32] dark:text-[#F2EDE6] tracking-tight group-hover:text-[#C1704D] transition-colors duration-200">
+              Vector House
+            </span>
           </Link>
 
           {/* Desktop Nav */}
