@@ -1,12 +1,15 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { caseStudies } from "@/lib/data/work";
+import PhoneShowcase from "@/components/work/PhoneShowcase";
+import WebShowcase from "@/components/work/WebShowcase";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -89,13 +92,32 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Hero image */}
-        <div className="bg-gradient-to-br from-[#DDD2C3] to-[#CDBCA9] dark:from-[#2B2B2B] dark:to-[#1B1B1B] aspect-[21/9] flex items-center justify-center">
-          <div className="text-center space-y-2">
-            <div className="font-serif text-6xl text-[#7A6556]/30 font-light">{cs.result}</div>
-            <p className="eyebrow text-[#A78F7A]/60">{cs.resultLabel}</p>
+        {/* Hero image — hidden for custom showcase projects */}
+        {cs.slug !== "rohit-diamonds-platform" && cs.slug !== "medi-raj-pharma-platform" && (
+          <div className="relative aspect-[21/9] overflow-hidden bg-gradient-to-br from-[#DDD2C3] to-[#CDBCA9] dark:from-[#2B2B2B] dark:to-[#1B1B1B]">
+            {cs.heroImage && !cs.heroImage.includes("/images/work/") ? (
+              <Image
+                src={cs.heroImage}
+                alt={cs.title}
+                fill
+                priority
+                className="object-cover object-center"
+                sizes="100vw"
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center space-y-2">
+                  <div className="font-serif text-6xl text-[#7A6556]/30 font-light">{cs.result}</div>
+                  <p className="eyebrow text-[#A78F7A]/60">{cs.resultLabel}</p>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
+        )}
+
+        {/* Custom Showcases */}
+        {cs.slug === "rohit-diamonds-platform" && <PhoneShowcase />}
+        {cs.slug === "medi-raj-pharma-platform" && <WebShowcase />}
 
         {/* Body */}
         <article className="section-py">
@@ -113,6 +135,21 @@ export default async function CaseStudyPage({ params }: Props) {
                   </p>
                 </div>
               ))}
+              {cs.techStack && cs.techStack.length > 0 && (
+                <div className="space-y-4">
+                  <Badge>Tech Stack</Badge>
+                  <div className="flex flex-wrap gap-2">
+                    {cs.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs font-medium px-3 py-1.5 rounded-full bg-[#F2EDE6] dark:bg-[#2B2B2B] border border-[#DDD2C3] dark:border-[#4B3A32] text-[#4B3A32] dark:text-[#F2EDE6]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </article>

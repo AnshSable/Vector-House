@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
@@ -78,11 +79,21 @@ export default function WorkPage() {
                     <div
                       className={`aspect-[16/10] bg-gradient-to-br ${gradients[i % gradients.length]} relative overflow-hidden`}
                     >
-                      <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-500 ease-out bg-gradient-to-br opacity-80"
-                        style={{ backgroundImage: `linear-gradient(135deg, ${
-                          ["#DDD2C3", "#CDBCA9", "#C1704D22", "#A78F7A66"][i % 4]
-                        }, ${["#CDBCA9", "#DDD2C3", "#DDD2C3", "#DDD2C3"][i % 4]})` }}
-                      />
+                      {cs.thumbnailImage && !cs.thumbnailImage.includes("/images/work/") ? (
+                        <Image
+                          src={cs.thumbnailImage}
+                          alt={cs.title}
+                          fill
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-500 ease-out bg-gradient-to-br opacity-80"
+                          style={{ backgroundImage: `linear-gradient(135deg, ${
+                            ["#DDD2C3", "#CDBCA9", "#C1704D22", "#A78F7A66"][i % 4]
+                          }, ${["#CDBCA9", "#DDD2C3", "#DDD2C3", "#DDD2C3"][i % 4]})` }}
+                        />
+                      )}
                       {/* Result stat overlay */}
                       <div className="absolute bottom-4 left-4">
                         <div className="bg-[#F8F6F2]/90 backdrop-blur-sm rounded-lg px-3 py-2">

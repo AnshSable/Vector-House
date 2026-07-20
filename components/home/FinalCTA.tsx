@@ -50,15 +50,6 @@ export default function FinalCTA() {
               Start a Project
               <ArrowRight size={16} />
             </Button>
-            <Button
-              href="https://cal.com"
-              variant="outline"
-              size="lg"
-              external
-              className="border-[#F2EDE6]/30 text-[#F2EDE6] hover:bg-[#F2EDE6]/10 hover:text-[#F2EDE6]"
-            >
-              Book a 30-min Call
-            </Button>
           </div>
 
           {/* Reassurance row */}

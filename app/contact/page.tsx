@@ -31,10 +31,31 @@ export default function ContactPage() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate async — replace with real form submission
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSent(true);
+
+    const formData = new FormData(e.currentTarget);
+    // Replace this string with your actual access key or use an env variable
+    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSent(true);
+      } else {
+        console.error("Form submission failed:", data);
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Something went wrong. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -181,7 +202,7 @@ export default function ContactPage() {
                   Prefer WhatsApp? For Indian clients, this is often faster.
                 </p>
                 <Button
-                  href="https://wa.me/91XXXXXXXXXX"
+                  href="https://wa.me/917000648030"
                   variant="ghost"
                   size="sm"
                   external

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Badge from "@/components/ui/Badge";
@@ -58,20 +59,32 @@ export default function FeaturedWork() {
                       i % 2 !== 0 ? "lg:order-2" : ""
                     } overflow-hidden`}
                   >
-                    {/* Muted gradient placeholder */}
-                    <div className="absolute inset-0 flex flex-col items-start justify-end p-8">
-                      {/* Decorative element in image area */}
-                      <div className="w-full max-w-[200px]">
-                        <div className="text-5xl font-serif font-light text-[#7A6556]/40 leading-none mb-2">
-                          {cs.result}
+                    {cs.thumbnailImage && !cs.thumbnailImage.includes("/images/work/") ? (
+                      <Image
+                        src={cs.thumbnailImage}
+                        alt={cs.title}
+                        fill
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                      />
+                    ) : (
+                      <>
+                        {/* Muted gradient placeholder */}
+                        <div className="absolute inset-0 flex flex-col items-start justify-end p-8">
+                          {/* Decorative element in image area */}
+                          <div className="w-full max-w-[200px]">
+                            <div className="text-5xl font-serif font-light text-[#7A6556]/40 leading-none mb-2">
+                              {cs.result}
+                            </div>
+                            <div className="text-xs text-[#7A6556]/60 uppercase tracking-widest">
+                              {cs.resultLabel}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-xs text-[#7A6556]/60 uppercase tracking-widest">
-                          {cs.resultLabel}
-                        </div>
-                      </div>
-                    </div>
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-[#C1704D]/0 group-hover:bg-[#C1704D]/8 transition-colors duration-400" />
+                        {/* Overlay on hover */}
+                        <div className="absolute inset-0 bg-[#C1704D]/0 group-hover:bg-[#C1704D]/8 transition-colors duration-400" />
+                      </>
+                    )}
                   </div>
 
                   {/* Text */}

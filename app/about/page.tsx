@@ -124,7 +124,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team */}
+        {/* Team 
         <section className="section-py border-t border-[#DDD2C3] dark:border-[#2B2B2B]">
           <div className="container-site">
             <div className="space-y-3 mb-14">
@@ -158,6 +158,7 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+        */}
 
         <FinalCTA />
       </main>
